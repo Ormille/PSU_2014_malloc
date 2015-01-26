@@ -5,12 +5,15 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:41:48 2015 Julie Terranova
-** Last update Mon Jan 26 11:47:33 2015 Julie Terranova
+** Last update Mon Jan 26 14:37:22 2015 Julie Terranova
 */
 
 #include "all.h"
 
-void	free()
+void	free(void *ptr)
 {
+  if (ptr == NULL)
+    return;
+
 
 }

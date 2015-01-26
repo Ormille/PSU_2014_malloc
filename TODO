@@ -1,0 +1,7 @@
+
+// Ne pas oublier de passer sous csh si t'es sous bash
+
+// Pour surcharger le malloc realloc et free systeme faut faire ca:
+setenv LD_PRELOAD ./libmy_malloc.so
+
+// ensuite tes exécutables utiliseront bien ton malloc et pas le standard
