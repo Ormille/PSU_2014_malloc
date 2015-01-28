@@ -5,17 +5,20 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:37:30 2015 Julie Terranova
-** Last update Mon Jan 26 18:08:14 2015 Julie Terranova
+** Last update Wed Jan 28 18:33:31 2015 Julie Terranova
 */
 
 #ifndef ALL_H_
 # define ALL_H_
 
 #include <stdlib.h>
+#include <unistd.h>
 
-typedef struct s_zone {
+#define PAGE_SIZE (4096)
+
+typedef struct __attribute__((__packed__)) /*s_zone*/ {
   size_t	size;
-  int		ptr;
+  void		*stock;
   struct s_zone *prev;
   struct s_zone *next;
 }t_zone;

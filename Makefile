@@ -5,7 +5,7 @@
 ## Login   <terran_j@epitech.net>
 ##
 ## Started on  Mon Jan 26 10:27:45 2015 Julie Terranova
-## Last update Mon Jan 26 11:53:03 2015 Julie Terranova
+## Last update Wed Jan 28 18:35:50 2015 Julie Terranova
 ##
 
 LIB_NAME    = libmy_malloc_$(HOSTTYPE).so
@@ -15,10 +15,11 @@ LIB_LINK    = libmy_malloc.so
 LIB_SRC     = malloc/malloc.c \
 	      realloc/realloc.c \
 	      free/free.c \
+	      show_alloc_mem/show_alloc_mem.c \
 
 LIB_OBJ     = $(LIB_SRC:.c=.o)
 
-CFLAGS      = -Wall -Werror -Wextra -I ./includes
+CFLAGS      = -Wall -Werror -Wextra -I ./includes -fPIC
 
 CCFLAGS    += -fPIC
 
@@ -41,3 +42,5 @@ fclean:  clean
 	 @echo "<===== FClean =====>"
 
 re:      fclean all
+
+.PHONY:	 all clean fclean re
