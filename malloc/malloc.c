@@ -5,10 +5,15 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Thu Jan 29 11:29:33 2015 Julie Terranova
+** Last update Thu Jan 29 12:44:34 2015 Julie Terranova
 */
 
 #include "all.h"
+
+void	do_some_space(t_zone *ret)
+{
+
+}
 
 int	get_page_size(t_zone *ret)
 {
@@ -28,7 +33,12 @@ void	*malloc(size_t size)
   if (get_page_size(&ret) == -1)
     return (NULL);
 
-  // ret->next = ?;
+  //  while (ret != NULL)
+    //  ret = ret->next;
+
+  ret = do_some_space(&ret);
+
+  // moment d'utiliser mon stock.
 
   // pour compiler:
   return 0;
