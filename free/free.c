@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:41:48 2015 Julie Terranova
-** Last update Fri Jan 30 11:35:34 2015 moran-_d
+** Last update Fri Jan 30 12:04:03 2015 moran-_d
 */
 
 #include "all.h"
@@ -23,10 +23,12 @@ void merge_block(t_zone *zone)
 
 void	free(void *ptr)
 {
-  t_zone *zone;
+  //  t_zone *zone;
 
+  return;
   if (ptr == NULL)
     return;
+  /*
   zone = (t_zone*)(ptr - sizeof(*zone));
   if (zone->isFree != 0)
     return;
@@ -41,7 +43,9 @@ void	free(void *ptr)
     {
       if (zone->prev != NULL)
 	zone->prev->next = NULL;
-      if (zone->size + sizeof(*zone) > getpagesize())
+      while ((void*)(zone->prev) + sizeof(*zone) > sbrk(0))
 	sbrk(getpagesize() * -1);
     }
+  */
 }
+
