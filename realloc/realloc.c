@@ -5,17 +5,39 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:51 2015 Julie Terranova
-** Last update Fri Jan 30 13:45:31 2015 moran-_d
+** Last update Fri Jan 30 15:02:40 2015 moran-_d
 */
 
+#include <string.h>
+#include <stdio.h>
 #include "all.h"
 
-/*
 void	*realloc(void *ptr, size_t size)
 {
-  if (ptr == NULL || size == 0)
-    return NULL;
+  t_zone *zone;
+  void *new;
 
-  return 0;
+  printf("REAL START\n");
+
+  new = ptr;
+  if (size == 0)
+    return (sbrk(0));
+  if (ptr != NULL)
+    {
+      zone = (t_zone*)(ptr - sizeof(t_zone));
+      if (size <= zone->size)
+	zone->size = size;
+      else
+	{
+	  new = malloc(size);
+	  memmove(new, ptr, zone->size);
+	  free(ptr);
+	}
+    }
+  else
+    new = malloc(size);
+
+  printf("REAL END\n");
+
+  return (new);
 }
-*/

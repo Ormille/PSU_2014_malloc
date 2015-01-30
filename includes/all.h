@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Fri Jan 30 10:58:51 2015 Julie Terranova
-** Last update Fri Jan 30 11:20:36 2015 Julie Terranova
+** Last update Fri Jan 30 15:17:02 2015 moran-_d
 */
 
 #ifndef ALL_H_
@@ -21,6 +21,11 @@ typedef struct __attribute__((__packed__)) s_zone {
   int		isFree;
 }t_zone;
 
-t_zone *get_start();
+t_zone	*get_start();
+void    *malloc(size_t size);
+void    free(void *ptr);
+void    *realloc(void *ptr, size_t size);
+void    show_alloc_mem();
+
 
 #endif

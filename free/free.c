@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:41:48 2015 Julie Terranova
-** Last update Fri Jan 30 13:55:15 2015 moran-_d
+** Last update Fri Jan 30 14:55:11 2015 moran-_d
 */
 
 #include <stdio.h>
@@ -26,6 +26,8 @@ void	free(void *ptr)
 {
   t_zone *zone;
 
+  printf("FREE ENTER\n");
+
   if (ptr == NULL)
     return;
   zone = (t_zone*)(ptr - sizeof(t_zone));
@@ -34,16 +36,15 @@ void	free(void *ptr)
   zone->isFree = 1;
   merge_block(zone);
   if (zone->prev != NULL && zone->prev->isFree == 1)
-    {
-      zone = zone->prev;
-      merge_block(zone);
-    }
+    merge_block((zone = zone->prev));
   if (zone->next == NULL)
     {
       if (zone->prev != NULL)
 	zone->prev->next = NULL;
-      while ((void*)(zone->prev) + sizeof(t_zone) > sbrk(0))
+      while ((void*)zone < sbrk(0) - getpagesize())
 	sbrk(getpagesize() * -1);
     }
-}
 
+  printf("FREE END\n");
+
+}
