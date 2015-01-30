@@ -1,11 +1,11 @@
 /*
-** calloc.c for calloc in /home/moran-_d/rendu/PSU_2014_malloc/calloc
-** 
-** Made by moran-_d
-** Login   <moran-_d@epitech.net>
-** 
-** Started on  Fri Jan 30 16:46:12 2015 moran-_d
-** Last update Fri Jan 30 16:48:30 2015 moran-_d
+** calloc.c for calloc in /home/terran_j/rendu/PSU_2014_malloc
+**
+** Made by Julie Terranova
+** Login   <terran_j@epitech.net>
+**
+** Started on  Fri Jan 30 17:37:57 2015 Julie Terranova
+** Last update Fri Jan 30 17:38:00 2015 Julie Terranova
 */
 
 #include <string.h>
