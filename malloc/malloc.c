@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Fri Jan 30 11:10:50 2015 Julie Terranova
+** Last update Fri Jan 30 11:36:39 2015 moran-_d
 */
 
 #include "all.h"
@@ -35,10 +35,10 @@ int	pass_by_me(t_zone **ret, size_t size, t_zone *tmp)
   if ((*ret)->isFree == 0)
     {
       while ((void*)(*ret) + (*ret)->size + size
-	     + (2 * sizeof(t_zone)) >= sbrk(0))
+	     + (2 * sizeof(*ret)) >= sbrk(0))
 	if (sbrk(getpagesize()) == (void*) -1)
 	  return (-1);
-      (*ret)->next = (t_zone*)((void*)(*ret) + sizeof(t_zone) + (*ret)->size);
+      (*ret)->next = (t_zone*)((void*)(*ret) + sizeof(*ret) + (*ret)->size);
       (*ret)->next->prev = (*ret);
       (*ret)->next->next = NULL;
       (*ret) = (*ret)->next;
@@ -46,11 +46,11 @@ int	pass_by_me(t_zone **ret, size_t size, t_zone *tmp)
   else
     {
       if ((*ret)->next == NULL)
-	while ((void*)(*ret) + sizeof(t_zone) + size >= sbrk(0))
+	while ((void*)(*ret) + sizeof(*ret) + size >= sbrk(0))
 	  if (sbrk(getpagesize()) == (void*) -1)
 	    return (-1);
       tmp = (*ret)->next;
-      (*ret)->next = (t_zone*)((void*)(*ret) + sizeof(t_zone) + size);
+      (*ret)->next = (t_zone*)((void*)(*ret) + sizeof(*ret) + size);
       if (tmp != NULL)
 	tmp->prev = (*ret)->next;
       (*ret)->next->prev = (*ret);
@@ -69,11 +69,11 @@ void	*malloc(size_t size)
     return ((void*)ret);
   while (ret->next != NULL &&
 	 (ret->isFree == 0 ||
-	  (ret->isFree == 1 && (ret->size + sizeof(t_zone)) > size)))
+	  (ret->isFree == 1 && (ret->size + sizeof(*ret)) > size)))
     ret = ret->next;
   if (pass_by_me(&ret, size, NULL) == -1)
     return (NULL);
   ret->isFree = 0;
   ret->size = size;
-  return ((void*)ret + sizeof(t_zone));
+  return ((void*)ret + sizeof(*ret));
 }
