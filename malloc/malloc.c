@@ -5,17 +5,10 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Fri Jan 30 10:09:34 2015 moran-_d
+** Last update Fri Jan 30 10:53:01 2015 moran-_d
 */
 
 #include "all.h"
-
-int	locate_stock(t_zone *ret)
-{
-  if ((ret->stock = sbrk(ret->size + sizeof(t_zone))) == (void *)(-1))
-    return (-1);
-  return (0);
-}
 
 t_zone *get_start()
 {
@@ -29,7 +22,6 @@ t_zone *get_start()
       tmp = (t_zone*)addr;
       tmp->next = NULL;
       tmp->prev = NULL;
-      tmp->stock = NULL;
       tmp->isFree = 1;
       tmp->size = getpagesize() - sizeof(*tmp);
     }
@@ -56,7 +48,7 @@ void	*malloc(size_t size)
 
   if (ret->isFree == 0)
     {
-      while ((void*)ret + ret->size + size + (2 * sizeof(t_zone)) > sbrk(0))
+      while ((void*)ret + ret->size + size + (2 * sizeof(t_zone)) >= sbrk(0))
 	if (sbrk(getpagesize()) == (void*) -1)
 	  return (NULL);
       ret->next = (t_zone*)((void*)ret + sizeof(t_zone) + ret->size);
@@ -67,18 +59,18 @@ void	*malloc(size_t size)
   else
     {
       if (ret->next == NULL)
-	while ((void*)ret + sizeof(t_zone) + size > sbrk(0))
+	while ((void*)ret + sizeof(t_zone) + size >= sbrk(0))
 	  if (sbrk(getpagesize()) == (void*) -1)
 	    return (NULL);
       tmp = ret->next;
       ret->next = (t_zone*)((void*)ret + sizeof(t_zone) + size);
-      tmp->prev = ret->next;
+      if (tmp != NULL)
+	tmp->prev = ret->next;
       ret->next->prev = ret;
       ret->next->next = tmp;
     }
   ret->isFree = 0;
   ret->size = size;
-  ret->stock = (void*)ret + sizeof(t_zone);
 
-  return (ret->stock);
+  return ((void*)ret + sizeof(t_zone));
 }
