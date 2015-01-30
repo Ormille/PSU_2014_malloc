@@ -5,13 +5,13 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:41:48 2015 Julie Terranova
-** Last update Fri Jan 30 16:24:11 2015 moran-_d
+** Last update Fri Jan 30 16:28:32 2015 moran-_d
 */
 
 #include <stdio.h>
 #include "all.h"
 
-void merge_block(t_zone *zone)
+void try_merge_block(t_zone *zone)
 {
   if (zone->next != NULL && zone->next->isFree == 1)
     {
@@ -32,9 +32,9 @@ void	free(void *ptr)
   if (zone->isFree != 0)
     return;
   zone->isFree = 1;
-  merge_block(zone);
+  try_merge_block(zone);
   if (zone->prev != NULL && zone->prev->isFree == 1)
-    merge_block((zone = zone->prev));
+    try_merge_block((zone = zone->prev));
   if (zone->next == NULL)
     {
       if (zone->prev != NULL)

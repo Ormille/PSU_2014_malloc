@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Fri Jan 30 16:22:51 2015 moran-_d
+** Last update Fri Jan 30 16:28:53 2015 moran-_d
 */
 
 #include "all.h"
@@ -74,7 +74,6 @@ void	*malloc(size_t size)
   ret->size = size;
 
   //  printf("MALLOC EXIT. Addr = %p\n", ((void*)ret + sizeof(t_zone)));
-
   //  show_alloc_mem();
 
   return ((void*)ret + sizeof(t_zone));
