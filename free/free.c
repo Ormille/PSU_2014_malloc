@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:41:48 2015 Julie Terranova
-** Last update Fri Jan 30 14:55:11 2015 moran-_d
+** Last update Fri Jan 30 16:24:11 2015 moran-_d
 */
 
 #include <stdio.h>
@@ -26,8 +26,6 @@ void	free(void *ptr)
 {
   t_zone *zone;
 
-  printf("FREE ENTER\n");
-
   if (ptr == NULL)
     return;
   zone = (t_zone*)(ptr - sizeof(t_zone));
@@ -44,7 +42,4 @@ void	free(void *ptr)
       while ((void*)zone < sbrk(0) - getpagesize())
 	sbrk(getpagesize() * -1);
     }
-
-  printf("FREE END\n");
-
 }

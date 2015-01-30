@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Fri Jan 30 15:23:45 2015 moran-_d
+** Last update Fri Jan 30 16:22:51 2015 moran-_d
 */
 
 #include "all.h"
@@ -57,7 +57,8 @@ void	*malloc(size_t size)
 {
   t_zone *ret;
 
-  printf("MALLOC ENTER. SIZE = %zu\n", size);
+  //  printf("MALLOC ENTER. SIZE = %zu\n", size);
+  //  show_alloc_mem();
 
   if ((ret = get_start()) == NULL)
     return (NULL);
@@ -65,16 +66,16 @@ void	*malloc(size_t size)
     return ((void*)ret);
   while (ret->next != NULL &&
 	 (ret->isFree == 0 ||
-	  (ret->isFree == 1 && (ret->size + sizeof(t_zone)) > size)))
+	  (ret->isFree == 1 && (ret->size < sizeof(t_zone)) + size)))
     ret = ret->next;
   if ((ret = pass_by_me(ret, size)) == NULL)
     return (NULL);
   ret->isFree = 0;
   ret->size = size;
 
-  printf("MALLOC EXIT. Addr = %p\n", ((void*)ret + sizeof(t_zone)));
+  //  printf("MALLOC EXIT. Addr = %p\n", ((void*)ret + sizeof(t_zone)));
 
-  show_alloc_mem();
+  //  show_alloc_mem();
 
   return ((void*)ret + sizeof(t_zone));
 }

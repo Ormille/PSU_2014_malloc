@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:51 2015 Julie Terranova
-** Last update Fri Jan 30 15:02:40 2015 moran-_d
+** Last update Fri Jan 30 16:24:24 2015 moran-_d
 */
 
 #include <string.h>
@@ -16,8 +16,6 @@ void	*realloc(void *ptr, size_t size)
 {
   t_zone *zone;
   void *new;
-
-  printf("REAL START\n");
 
   new = ptr;
   if (size == 0)
@@ -36,8 +34,5 @@ void	*realloc(void *ptr, size_t size)
     }
   else
     new = malloc(size);
-
-  printf("REAL END\n");
-
   return (new);
 }
