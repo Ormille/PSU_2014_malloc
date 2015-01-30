@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Fri Jan 30 10:58:51 2015 Julie Terranova
-** Last update Fri Jan 30 10:58:54 2015 Julie Terranova
+** Last update Fri Jan 30 11:20:36 2015 Julie Terranova
 */
 
 #ifndef ALL_H_
@@ -20,5 +20,7 @@ typedef struct __attribute__((__packed__)) s_zone {
   size_t	size;
   int		isFree;
 }t_zone;
+
+t_zone *get_start();
 
 #endif
