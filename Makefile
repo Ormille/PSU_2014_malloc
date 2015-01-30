@@ -5,7 +5,7 @@
 ## Login   <terran_j@epitech.net>
 ##
 ## Started on  Mon Jan 26 10:27:45 2015 Julie Terranova
-## Last update Fri Jan 30 11:43:22 2015 moran-_d
+## Last update Fri Jan 30 16:48:22 2015 moran-_d
 ##
 
 LIB_NAME    = libmy_malloc_$(HOSTTYPE).so
@@ -15,6 +15,7 @@ LIB_LINK    = libmy_malloc.so
 LIB_SRC     = malloc/malloc.c \
 	      realloc/realloc.c \
 	      free/free.c \
+	      calloc/calloc.c \
 	      show_alloc_mem/show_alloc_mem.c \
 
 LIB_OBJ     = $(LIB_SRC:.c=.o)

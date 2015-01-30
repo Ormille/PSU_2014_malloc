@@ -5,10 +5,9 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:41:48 2015 Julie Terranova
-** Last update Fri Jan 30 16:28:32 2015 moran-_d
+** Last update Fri Jan 30 16:50:17 2015 moran-_d
 */
 
-#include <stdio.h>
 #include "all.h"
 
 void try_merge_block(t_zone *zone)
@@ -26,7 +25,7 @@ void	free(void *ptr)
 {
   t_zone *zone;
 
-  if (ptr == NULL)
+  if (ptr == NULL || ptr + sizeof(t_zone) >= sbrk(0))
     return;
   zone = (t_zone*)(ptr - sizeof(t_zone));
   if (zone->isFree != 0)

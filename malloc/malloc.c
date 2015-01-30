@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Fri Jan 30 16:28:53 2015 moran-_d
+** Last update Fri Jan 30 16:49:00 2015 moran-_d
 */
 
 #include "all.h"
@@ -52,13 +52,9 @@ t_zone	*pass_by_me(t_zone *ret, size_t size)
   return (ret);
 }
 
-#include <stdio.h>
 void	*malloc(size_t size)
 {
   t_zone *ret;
-
-  //  printf("MALLOC ENTER. SIZE = %zu\n", size);
-  //  show_alloc_mem();
 
   if ((ret = get_start()) == NULL)
     return (NULL);
@@ -72,9 +68,5 @@ void	*malloc(size_t size)
     return (NULL);
   ret->isFree = 0;
   ret->size = size;
-
-  //  printf("MALLOC EXIT. Addr = %p\n", ((void*)ret + sizeof(t_zone)));
-  //  show_alloc_mem();
-
   return ((void*)ret + sizeof(t_zone));
 }
