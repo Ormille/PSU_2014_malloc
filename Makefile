@@ -5,7 +5,7 @@
 ## Login   <terran_j@epitech.net>
 ##
 ## Started on  Mon Jan 26 10:27:45 2015 Julie Terranova
-## Last update Wed Jan 28 18:35:50 2015 Julie Terranova
+## Last update Fri Jan 30 11:43:22 2015 moran-_d
 ##
 
 LIB_NAME    = libmy_malloc_$(HOSTTYPE).so
