@@ -1,11 +1,11 @@
 /*
-** main.c for test in /home/moran-_d/rendu/PSU_2014_malloc
-** 
-** Made by moran-_d
-** Login   <moran-_d@epitech.net>
-** 
-** Started on  Fri Jan 30 12:24:44 2015 moran-_d
-** Last update Fri Jan 30 15:31:54 2015 moran-_d
+** main.c for main in /home/terran_j/rendu/PSU_2014_malloc
+**
+** Made by Julie Terranova
+** Login   <terran_j@epitech.net>
+**
+** Started on  Fri Jan 30 17:38:17 2015 Julie Terranova
+** Last update Fri Jan 30 17:38:20 2015 Julie Terranova
 */
 
 #include <stdio.h>
@@ -37,5 +37,4 @@ int main()
   free(f);
 
   show_alloc_mem();
-
 }
