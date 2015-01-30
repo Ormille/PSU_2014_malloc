@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Fri Jan 30 09:46:27 2015 moran-_d
+** Last update Fri Jan 30 10:01:32 2015 moran-_d
 */
 
 #include "all.h"
@@ -49,8 +49,9 @@ void	*malloc(size_t size)
   if (size == 0)
     return ((void*)ret);
 
-  while ((ret->isFree == 1 && (ret->size + sizeof(t_zone)) < size)
-	 && ret->next != NULL)
+  while (ret->next != NULL &&
+	 (ret->isFree == 0 ||
+	  (ret->isFree == 1 && (ret->size + sizeof(t_zone)) > size)))
     ret = ret->next;
 
   if (ret->isFree == 0)
@@ -65,6 +66,10 @@ void	*malloc(size_t size)
     }
   else
     {
+      if (ret->next == NULL)
+	while ((void*)ret + sizeof(t_zone) + size < sbrk(0))
+	  if (sbrk(getpagesize()) == (void*) -1)
+	    return (NULL);
       tmp = ret->next;
       ret->next = (t_zone*)((void*)ret + sizeof(t_zone) + size);
       tmp->prev = ret->next;
