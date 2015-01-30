@@ -1,11 +1,11 @@
 /*
-** inc.h for malloc in /home/terran_j/rendu/PSU_2014_malloc/includes
+** all.h for malloc in /home/terran_j/rendu/PSU_2014_malloc
 **
 ** Made by Julie Terranova
 ** Login   <terran_j@epitech.net>
 **
-** Started on  Mon Jan 26 11:37:30 2015 Julie Terranova
-** Last update Fri Jan 30 10:17:20 2015 moran-_d
+** Started on  Fri Jan 30 10:58:51 2015 Julie Terranova
+** Last update Fri Jan 30 10:58:54 2015 Julie Terranova
 */
 
 #ifndef ALL_H_
