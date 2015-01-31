@@ -5,13 +5,13 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:51 2015 Julie Terranova
-** Last update Fri Jan 30 17:48:22 2015 moran-_d
+** Last update Sat Jan 31 15:25:21 2015 moran-_d
 */
 
 #include <string.h>
 #include "all.h"
 
-void	if_low_enough(t_zone *zone, size_t size)
+void	split_block(t_zone *zone, size_t size)
 {
   t_zone *nzone;
 
@@ -26,6 +26,15 @@ void	if_low_enough(t_zone *zone, size_t size)
   zone->next = nzone;
 }
 
+void	merge_and_split(t_zone *zone, size_t size)
+{
+  zone->size += zone->next->size + sizeof(t_zone);
+  if (zone->next->next != NULL)
+    zone->next->next->prev = zone;
+  zone->next = zone->next->next;
+  split_block(zone, size);
+}
+
 void	*realloc(void *ptr, size_t size)
 {
   t_zone *zone;
@@ -36,14 +45,17 @@ void	*realloc(void *ptr, size_t size)
   if (ptr == NULL)
     return (malloc(size));
   zone = (t_zone*)(ptr - sizeof(t_zone));
+  new = ptr;
   if (size + sizeof(t_zone) <= zone->size)
-    if_low_enough(zone, size);
+    split_block(zone, size);
+  else if (zone->next != NULL && zone->isFree == 1 &&
+	   zone->size + zone->next->size > size)
+    merge_and_split(zone, size);
   else
     {
       new = malloc(size);
       memmove(new, ptr, zone->size);
       free(ptr);
     }
-
   return (new);
 }
