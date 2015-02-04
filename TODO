@@ -5,3 +5,12 @@
 setenv LD_PRELOAD ./libmy_malloc.so
 
 // ensuite tes exécutables utiliseront bien ton malloc et pas le standard
+
+// on segfault avec gimp, emacs, htop, firefox... tout quoi.
+// donc faut faire les thread
+
+// finir tests unitaires
+
+// pas oublier de faire le diapo.
+
+// NORME!

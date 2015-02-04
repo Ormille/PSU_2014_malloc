@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Fri Jan 30 10:58:51 2015 Julie Terranova
-** Last update Fri Jan 30 16:29:33 2015 moran-_d
+** Last update Sat Jan 31 14:17:39 2015 Julie Terranova
 */
 
 #ifndef ALL_H_
@@ -26,5 +26,6 @@ void    *malloc(size_t size);
 void    free(void *ptr);
 void    *realloc(void *ptr, size_t size);
 void    show_alloc_mem();
+void    show_alloc_and_free();
 
 #endif
