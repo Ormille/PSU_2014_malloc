@@ -5,11 +5,12 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Wed Feb  4 12:30:39 2015 Julie Terranova
+** Last update Wed Feb  4 17:25:14 2015 Julie Terranova
 */
 
 #include "all.h"
 #include <pthread.h>
+#include <errno.h>
 
 t_zone *get_start()
 {
@@ -60,11 +61,13 @@ void	*malloc(size_t size)
   pthread_mutex_lock(&malls);
   if ((ret = get_start()) == NULL)
     {
+      errno = ENOMEM;
       pthread_mutex_unlock(&malls);
       return (NULL);
     }
   if (size == 0)
     {
+      errno = ENOMEM;
       pthread_mutex_unlock(&malls);
       return ((void*)ret);
     }
@@ -74,6 +77,7 @@ void	*malloc(size_t size)
     ret = ret->next;
   if ((ret = pass_by_me(ret, size)) == NULL)
     {
+      errno = ENOMEM;
       pthread_mutex_unlock(&malls);
       return (NULL);
     }

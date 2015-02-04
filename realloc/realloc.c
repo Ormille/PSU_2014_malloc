@@ -5,11 +5,12 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:51 2015 Julie Terranova
-** Last update Wed Feb  4 12:26:30 2015 Julie Terranova
+** Last update Wed Feb  4 17:29:59 2015 Julie Terranova
 */
 
 #include <string.h>
 #include "all.h"
+#include <errno.h>
 
 void	split_block(t_zone *zone, size_t size)
 {
@@ -41,9 +42,15 @@ void	*realloc(void *ptr, size_t size)
   void *new;
 
   if (size == 0)
-    return (sbrk(0));
+    {
+      errno = ENOMEM;
+      return (sbrk(0));
+    }
   if (ptr == NULL)
-    return (malloc(size));
+    {
+      errno = ENOMEM;
+      return (malloc(size));
+    }
   pthread_mutex_lock(&malls);
   zone = (t_zone*)(ptr - sizeof(t_zone));
   new = ptr;

@@ -1,13 +1,12 @@
-
+#HOWTO:
 // Ne pas oublier de passer sous csh si t'es sous bash
-
 // Pour surcharger le malloc realloc et free systeme faut faire ca:
 setenv LD_PRELOAD ./libmy_malloc.so
-
 // ensuite tes exécutables utiliseront bien ton malloc et pas le standard
 
-// on segfault avec gimp, emacs, htop, firefox... tout quoi.
-// donc faut faire les thread
+#TODO:
+// on segfault avec gimp parce qu'errno n'a pas ses valeurs set
+il faut set errno a ENOMEM si malloc calloc ou realloc fail
 
 // finir tests unitaires
 
