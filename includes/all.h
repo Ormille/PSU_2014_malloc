@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Fri Jan 30 10:58:51 2015 Julie Terranova
-** Last update Sat Jan 31 14:17:39 2015 Julie Terranova
+** Last update Wed Feb  4 12:00:12 2015 Julie Terranova
 */
 
 #ifndef ALL_H_
@@ -13,6 +13,10 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <pthread.h>
+
+pthread_mutex_t malls;
+pthread_mutex_t freez;
 
 typedef struct __attribute__((__packed__)) s_zone {
   struct s_zone *next;

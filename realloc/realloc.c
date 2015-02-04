@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:51 2015 Julie Terranova
-** Last update Sat Jan 31 15:25:21 2015 moran-_d
+** Last update Wed Feb  4 12:26:30 2015 Julie Terranova
 */
 
 #include <string.h>
@@ -44,6 +44,7 @@ void	*realloc(void *ptr, size_t size)
     return (sbrk(0));
   if (ptr == NULL)
     return (malloc(size));
+  pthread_mutex_lock(&malls);
   zone = (t_zone*)(ptr - sizeof(t_zone));
   new = ptr;
   if (size + sizeof(t_zone) <= zone->size)
@@ -53,9 +54,12 @@ void	*realloc(void *ptr, size_t size)
     merge_and_split(zone, size);
   else
     {
+      pthread_mutex_unlock(&malls);
       new = malloc(size);
+      pthread_mutex_lock(&malls);
       memmove(new, ptr, zone->size);
       free(ptr);
     }
+  pthread_mutex_unlock(&malls);
   return (new);
 }

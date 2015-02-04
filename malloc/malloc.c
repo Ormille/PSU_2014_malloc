@@ -5,10 +5,11 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Wed Feb  4 11:25:41 2015 Julie Terranova
+** Last update Wed Feb  4 12:30:39 2015 Julie Terranova
 */
 
 #include "all.h"
+#include <pthread.h>
 
 t_zone *get_start()
 {
@@ -56,17 +57,28 @@ void	*malloc(size_t size)
 {
   t_zone *ret;
 
+  pthread_mutex_lock(&malls);
   if ((ret = get_start()) == NULL)
-    return (NULL);
+    {
+      pthread_mutex_unlock(&malls);
+      return (NULL);
+    }
   if (size == 0)
-    return ((void*)ret);
+    {
+      pthread_mutex_unlock(&malls);
+      return ((void*)ret);
+    }
   while (ret->next != NULL &&
 	 (ret->isFree == 0 ||
 	  (ret->isFree == 1 && (ret->size < sizeof(t_zone)) + size)))
     ret = ret->next;
   if ((ret = pass_by_me(ret, size)) == NULL)
-    return (NULL);
+    {
+      pthread_mutex_unlock(&malls);
+      return (NULL);
+    }
   ret->isFree = 0;
   ret->size = size;
+  pthread_mutex_unlock(&malls);
   return ((void*)ret + sizeof(t_zone));
 }
