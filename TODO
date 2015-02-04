@@ -7,6 +7,7 @@ setenv LD_PRELOAD ./libmy_malloc.so
 #TODO:
 // on segfault avec gimp parce qu'errno n'a pas ses valeurs set
 il faut set errno a ENOMEM si malloc calloc ou realloc fail
+---> j'ai set errno a ENOMEM si les func fail mais ca segfault toujours...
 
 // finir tests unitaires
 

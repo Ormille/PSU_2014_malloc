@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Wed Feb  4 17:25:14 2015 Julie Terranova
+** Last update Wed Feb  4 17:48:36 2015 Julie Terranova
 */
 
 #include "all.h"
@@ -20,7 +20,10 @@ t_zone *get_start()
   if (addr == NULL || addr + sizeof(t_zone) > sbrk(0))
     {
       if ((addr = sbrk(getpagesize())) == (void*) -1)
-	return (NULL);
+	{
+	  errno = ENOMEM;
+	  return (NULL);
+	}
       tmp = (t_zone*)addr;
       tmp->next = NULL;
       tmp->prev = NULL;
@@ -39,7 +42,10 @@ t_zone	*pass_by_me(t_zone *ret, size_t size)
       while ((void*)ret + ret->size + size
 	     + (2 * sizeof(t_zone)) >= sbrk(0))
 	if (sbrk(getpagesize()) == (void*) -1)
-	  return (NULL);
+	  {
+	    errno = ENOMEM;
+	    return (NULL);
+	  }
       ret->next = (t_zone*)((void*)ret + sizeof(t_zone) + ret->size);
       ret->next->prev = ret;
       ret->next->next = NULL;
@@ -49,7 +55,10 @@ t_zone	*pass_by_me(t_zone *ret, size_t size)
     {
       while ((void*)ret + sizeof(t_zone) + size >= sbrk(0))
 	if (sbrk(getpagesize()) == (void*) -1)
-	  return (NULL);
+	  {
+	    errno = ENOMEM;
+	    return (NULL);
+	  }
     }
   return (ret);
 }
