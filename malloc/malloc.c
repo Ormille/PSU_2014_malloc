@@ -5,12 +5,11 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Wed Feb  4 17:48:36 2015 Julie Terranova
+** Last update Thu Feb  5 13:45:56 2015 Julie Terranova
 */
 
 #include "all.h"
 #include <pthread.h>
-#include <errno.h>
 
 t_zone *get_start()
 {
@@ -20,10 +19,7 @@ t_zone *get_start()
   if (addr == NULL || addr + sizeof(t_zone) > sbrk(0))
     {
       if ((addr = sbrk(getpagesize())) == (void*) -1)
-	{
-	  errno = ENOMEM;
-	  return (NULL);
-	}
+	return (NULL);
       tmp = (t_zone*)addr;
       tmp->next = NULL;
       tmp->prev = NULL;
@@ -42,10 +38,7 @@ t_zone	*pass_by_me(t_zone *ret, size_t size)
       while ((void*)ret + ret->size + size
 	     + (2 * sizeof(t_zone)) >= sbrk(0))
 	if (sbrk(getpagesize()) == (void*) -1)
-	  {
-	    errno = ENOMEM;
-	    return (NULL);
-	  }
+	  return (NULL);
       ret->next = (t_zone*)((void*)ret + sizeof(t_zone) + ret->size);
       ret->next->prev = ret;
       ret->next->next = NULL;
@@ -55,10 +48,7 @@ t_zone	*pass_by_me(t_zone *ret, size_t size)
     {
       while ((void*)ret + sizeof(t_zone) + size >= sbrk(0))
 	if (sbrk(getpagesize()) == (void*) -1)
-	  {
-	    errno = ENOMEM;
-	    return (NULL);
-	  }
+	  return (NULL);
     }
   return (ret);
 }
@@ -70,15 +60,13 @@ void	*malloc(size_t size)
   pthread_mutex_lock(&malls);
   if ((ret = get_start()) == NULL)
     {
-      errno = ENOMEM;
       pthread_mutex_unlock(&malls);
       return (NULL);
     }
-  if (size == 0)
+  if (size <= 0)
     {
-      errno = ENOMEM;
       pthread_mutex_unlock(&malls);
-      return ((void*)ret);
+      return (NULL);
     }
   while (ret->next != NULL &&
 	 (ret->isFree == 0 ||
@@ -86,7 +74,6 @@ void	*malloc(size_t size)
     ret = ret->next;
   if ((ret = pass_by_me(ret, size)) == NULL)
     {
-      errno = ENOMEM;
       pthread_mutex_unlock(&malls);
       return (NULL);
     }
