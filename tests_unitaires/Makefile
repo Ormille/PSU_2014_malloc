@@ -5,12 +5,12 @@
 ## Login   <terran_j@epitech.net>
 ##
 ## Started on  Fri Jan 30 16:52:21 2015 Julie Terranova
-## Last update Sat Jan 31 14:16:54 2015 Julie Terranova
+## Last update Thu Feb  5 14:25:40 2015 Julie Terranova
 ##
 
 CC	=	gcc
 
-CFLAGS	+=	-Wall -Wextra -Werror
+CFLAGS	+=	-Wall -Wextra
 CFLAGS	+=	-I .././includes
 
 RM	=	rm -f

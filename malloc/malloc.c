@@ -5,11 +5,12 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Thu Feb  5 13:45:56 2015 Julie Terranova
+** Last update Thu Feb  5 14:54:11 2015 Julie Terranova
 */
 
 #include "all.h"
 #include <pthread.h>
+#include <limits.h>
 
 t_zone *get_start()
 {
@@ -63,7 +64,7 @@ void	*malloc(size_t size)
       pthread_mutex_unlock(&malls);
       return (NULL);
     }
-  if (size <= 0)
+  if (size <= 0 || size >= INT_MAX)
     {
       pthread_mutex_unlock(&malls);
       return (NULL);
