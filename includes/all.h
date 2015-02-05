@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Fri Jan 30 10:58:51 2015 Julie Terranova
-** Last update Fri Jan 30 16:29:33 2015 moran-_d
+** Last update Sat Jan 31 16:01:49 2015 moran-_d
 */
 
 #ifndef ALL_H_
@@ -13,6 +13,7 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <pthread.h>
 
 typedef struct __attribute__((__packed__)) s_zone {
   struct s_zone *next;
