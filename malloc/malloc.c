@@ -5,12 +5,12 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Thu Feb  5 14:54:11 2015 Julie Terranova
+** Last update Thu Feb  5 21:43:25 2015 Julie Terranova
 */
 
-#include "all.h"
 #include <pthread.h>
 #include <limits.h>
+#include "all.h"
 
 t_zone *get_start()
 {

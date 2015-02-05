@@ -10,5 +10,3 @@ setenv LD_PRELOAD ./libmy_malloc.so
 // pas oublier de faire le diapo.
 
 // NORME!
-
-// si on veut les points pr le multithread faut faire un main de test (thread_create...)

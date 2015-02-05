@@ -5,11 +5,11 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:41:48 2015 Julie Terranova
-** Last update Thu Feb  5 13:08:03 2015 Julie Terranova
+** Last update Thu Feb  5 21:42:31 2015 Julie Terranova
 */
 
-#include "all.h"
 #include <pthread.h>
+#include "all.h"
 
 void try_merge_block(t_zone *zone)
 {
