@@ -5,7 +5,7 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Fri Jan 30 17:38:17 2015 Julie Terranova
-** Last update Fri Jan 30 17:38:20 2015 Julie Terranova
+** Last update Sat Jan 31 16:00:42 2015 moran-_d
 */
 
 #include <stdio.h>
@@ -13,6 +13,10 @@
 
 int main()
 {
+  char*z;
+
+  free(z);
+
   printf("SIZE : %zu\n", sizeof(t_zone));
   show_alloc_mem();
 
@@ -35,6 +39,12 @@ int main()
   free(d);
   free(e);
   free(f);
+
+  show_alloc_mem();
+
+  a = malloc(400);
+  show_alloc_mem();
+  free(a);
 
   show_alloc_mem();
 }

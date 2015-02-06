@@ -5,56 +5,76 @@
 ## Login   <terran_j@epitech.net>
 ##
 ## Started on  Fri Jan 30 16:52:21 2015 Julie Terranova
-## Last update Fri Jan 30 17:43:35 2015 Julie Terranova
+## Last update Sat Jan 31 14:16:54 2015 Julie Terranova
 ##
 
-CC =    gcc
+CC	=	gcc
 
-CFLAGS +=-Wall -Wextra -Werror
-CFLAGS +=-I .././includes
+CFLAGS	+=	-Wall -Wextra -Werror
+CFLAGS	+=	-I .././includes
 
-RM =    rm -f
+RM	=	rm -f
 
-NAME_MALLOC = test_malloc
+NAME_MALLOC  =	test_malloc
 
-NAME_REALLOC = test_realloc
+NAME_REALLOC =	test_realloc
 
-NAME_CALLOC = test_calloc
+NAME_CALLOC  =	test_calloc
 
-NAME_FREE = test_free
+NAME_FREE    =	test_free
 
-SRC_MALLOC =  ../malloc/malloc.c \
-		main_malloc.c
+SRC_MALLOC   =	main_malloc.c \
+		../malloc/malloc.c \
+		../realloc/realloc.c \
+		../calloc/calloc.c \
+		../free/free.c \
+		../show_alloc_mem/show_alloc_mem.c \
+		show_alloc_and_free.c
 
-SRC_REALLOC =  ../realloc/realloc.c \
-		main_realloc.c
+SRC_REALLOC  =	main_realloc.c \
+		../malloc/malloc.c \
+		../realloc/realloc.c \
+		../calloc/calloc.c \
+		../free/free.c \
+		../show_alloc_mem/show_alloc_mem.c \
+		show_alloc_and_free.c
 
-SRC_CALLOC =  ../calloc/calloc.c \
-		main_calloc.c
+SRC_CALLOC   =  main_calloc.c \
+		../malloc/malloc.c \
+		../realloc/realloc.c \
+		../calloc/calloc.c \
+		../free/free.c \
+		../show_alloc_mem/show_alloc_mem.c \
+		show_alloc_and_free.c
 
-SRC_FREE =  ../free/free.c \
-		main_free.c
+SRC_FREE     =  main_free.c \
+		../malloc/malloc.c \
+		../realloc/realloc.c \
+		../calloc/calloc.c \
+		../free/free.c \
+		../show_alloc_mem/show_alloc_mem.c \
+		show_alloc_and_free.c
 
-OBJ_MALLOC =  $(SRC_MALLOC:.c=.o)
+OBJ_MALLOC   =	$(SRC_MALLOC:.c=.o)
 
-OBJ_REALLOC =  $(SRC_REALLOC:.c=.o)
+OBJ_REALLOC  =	$(SRC_REALLOC:.c=.o)
 
-OBJ_CALLOC =  $(SRC_CALLOC:.c=.o)
+OBJ_CALLOC   =	$(SRC_CALLOC:.c=.o)
 
-OBJ_FREE =  $(SRC_FREE:.c=.o)
+OBJ_FREE     =	$(SRC_FREE:.c=.o)
 
 all:    $(NAME_MALLOC) $(NAME_REALLOC) $(NAME_CALLOC) $(NAME_FREE)
 
-$(NAME_MALLOC):$(OBJ_MALLOC)
+$(NAME_MALLOC): $(OBJ_MALLOC)
 	$(CC) $(OBJ_MALLOC) -o $(NAME_MALLOC) $(LDFLAGS)
 
-$(NAME_REALLOC):$(OBJ_REALLOC)
+$(NAME_REALLOC): $(OBJ_REALLOC)
 	$(CC) $(OBJ_REALLOC) -o $(NAME_REALLOC) $(LDFLAGS)
 
-$(NAME_CALLOC):$(OBJ_CALLOC)
+$(NAME_CALLOC): $(OBJ_CALLOC)
 	$(CC) $(OBJ_CALLOC) -o $(NAME_CALLOC) $(LDFLAGS)
 
-$(NAME_FREE):$(OBJ_FREE)
+$(NAME_FREE): $(OBJ_FREE)
 	$(CC) $(OBJ_FREE) -o $(NAME_FREE) $(LDFLAGS)
 
 clean:

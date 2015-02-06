@@ -5,9 +5,10 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:41:48 2015 Julie Terranova
-** Last update Fri Jan 30 16:50:17 2015 moran-_d
+** Last update Fri Feb  6 13:16:22 2015 moran-_d
 */
 
+#include <pthread.h>
 #include "all.h"
 
 void try_merge_block(t_zone *zone)
@@ -21,14 +22,12 @@ void try_merge_block(t_zone *zone)
     }
 }
 
-void	free(void *ptr)
+void	___free(void *ptr)
 {
   t_zone *zone;
 
-  if (ptr == NULL || ptr + sizeof(t_zone) >= sbrk(0))
-    return;
-  zone = (t_zone*)(ptr - sizeof(t_zone));
-  if (zone->isFree != 0)
+  if (ptr == NULL || ptr + sizeof(t_zone) >= sbrk(0)
+      || ((zone = (t_zone*)(ptr - sizeof(t_zone))))->isFree != 0)
     return;
   zone->isFree = 1;
   try_merge_block(zone);
@@ -41,4 +40,11 @@ void	free(void *ptr)
       while ((void*)zone < sbrk(0) - getpagesize())
 	sbrk(getpagesize() * -1);
     }
+}
+
+void	free(void *ptr)
+{
+  pthread_mutex_lock(getMutex());
+  ___free(ptr);
+  pthread_mutex_unlock(getMutex());
 }

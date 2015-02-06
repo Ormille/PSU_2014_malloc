@@ -5,12 +5,20 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Sat Jan 31 16:27:43 2015 moran-_d
+** Last update Fri Feb  6 13:15:14 2015 moran-_d
 */
 
+#include <pthread.h>
 #include "all.h"
 
-t_zone *get_start()
+pthread_mutex_t *getMutex()
+{
+  static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+  return (&mutex);
+}
+
+t_zone *getStart()
 {
   static void *addr = NULL;
   t_zone *tmp;
@@ -52,14 +60,12 @@ t_zone	*pass_by_me(t_zone *ret, size_t size)
   return (ret);
 }
 
-void	*malloc(size_t size)
+void	*___malloc(size_t size)
 {
   t_zone *ret;
 
-  if ((ret = get_start()) == NULL)
+  if ((ret = getStart()) == NULL || size <= 0)
     return (NULL);
-  if (size == 0)
-    return ((void*)ret);
   while (ret->next != NULL &&
 	 (ret->isFree == 0 ||
 	  (ret->isFree == 1 && (ret->size < sizeof(t_zone)) + size)))
@@ -69,4 +75,14 @@ void	*malloc(size_t size)
   ret->isFree = 0;
   ret->size = size;
   return ((void*)ret + sizeof(t_zone));
+}
+
+void	*malloc(size_t size)
+{
+  void *ret;
+
+  pthread_mutex_lock(getMutex());
+  ret = ___malloc(size);
+  pthread_mutex_unlock(getMutex());
+  return (ret);
 }
