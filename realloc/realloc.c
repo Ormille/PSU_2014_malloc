@@ -5,10 +5,11 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:51 2015 Julie Terranova
-** Last update Fri Feb  6 13:15:08 2015 moran-_d
+** Last update Fri Feb  6 13:24:34 2015 moran-_d
 */
 
 #include <string.h>
+#include <limits.h>
 #include "all.h"
 
 void	split_block(t_zone *zone, size_t size)
@@ -40,7 +41,7 @@ void	*realloc(void *ptr, size_t size)
   t_zone *zone;
   void *new;
 
-  if (size <= 0)
+  if (size <= 0 || size >= INT_MAX)
     return (sbrk(0));
   if (ptr == NULL)
     return (malloc(size));

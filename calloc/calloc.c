@@ -5,9 +5,10 @@
 ** Login   <moran-_d@epitech.net>
 **
 ** Started on  Fri Jan 30 16:46:12 2015 moran-_d
-** Last update Fri Feb  6 13:08:20 2015 moran-_d
+** Last update Fri Feb  6 13:28:25 2015 moran-_d
 */
 
+#include <pthread.h>
 #include <string.h>
 #include "all.h"
 
@@ -17,7 +18,7 @@ void *calloc(size_t nelem, size_t elsize)
 
   if (nelem <= 0 || elsize <= 0)
     return (NULL);
-  tmp = malloc(nelem * elsize);
-  memset(tmp, 0, nelem * elsize);
+  if ((tmp = malloc(nelem * elsize)) != NULL)
+    memset(tmp, 0, nelem * elsize);
   return (tmp);
 }

@@ -5,9 +5,10 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Mon Jan 26 11:40:01 2015 Julie Terranova
-** Last update Fri Feb  6 13:15:14 2015 moran-_d
+** Last update Fri Feb  6 13:26:41 2015 moran-_d
 */
 
+#include <limits.h>
 #include <pthread.h>
 #include "all.h"
 
@@ -64,7 +65,7 @@ void	*___malloc(size_t size)
 {
   t_zone *ret;
 
-  if ((ret = getStart()) == NULL || size <= 0)
+  if ((ret = getStart()) == NULL || size <= 0 || size >= INT_MAX)
     return (NULL);
   while (ret->next != NULL &&
 	 (ret->isFree == 0 ||

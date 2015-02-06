@@ -5,11 +5,11 @@
 ** Login   <terran_j@epitech.net>
 **
 ** Started on  Fri Jan 30 17:30:20 2015 Julie Terranova
-** Last update Thu Feb  5 13:34:18 2015 Julie Terranova
+** Last update Thu Feb  5 21:44:02 2015 Julie Terranova
 */
 
-#include "all.h"
 #include <stdio.h>
+#include "all.h"
 
 int	main()
 {
@@ -50,6 +50,5 @@ int	main()
   free(e);
   free(f);
   show_alloc_and_free();
-
   return (0);
 }
