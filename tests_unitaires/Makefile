@@ -5,7 +5,7 @@
 ## Login   <terran_j@epitech.net>
 ##
 ## Started on  Fri Jan 30 16:52:21 2015 Julie Terranova
-## Last update Thu Feb  5 15:23:40 2015 Julie Terranova
+## Last update Sat Feb  7 17:32:56 2015 Julie Terranova
 ##
 
 CC	=	gcc
@@ -15,13 +15,13 @@ CFLAGS	+=	-I .././includes
 
 RM	=	rm -f
 
-NAME_MALLOC  =	test_malloc
+NAME_MALLOC  =	test_malloc_free
 
 NAME_REALLOC =	test_realloc
 
 NAME_CALLOC  =	test_calloc
 
-SRC_MALLOC   =	main_malloc.c \
+SRC_MALLOC   =	main_malloc_free.c \
 		../malloc/malloc.c \
 		../realloc/realloc.c \
 		../calloc/calloc.c \
